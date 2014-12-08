@@ -1,3 +1,3 @@
-This code performs inference learning and output a taxonomy, as described by Bragg, Mausam, and Weld (HCOMP 2013).
+This code performs inference, learning, and outputs a taxonomy, as described by Bragg, Mausam, and Weld (HCOMP 2013).
 
 The main script run.py accepts a data file as described in preprocess.py.
