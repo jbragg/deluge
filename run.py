@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
         for s in ['independent', 'joint']:
             x = np.round(probabilities[s][0])
-            items_to_labels[s][i] = [data.labels[ind] for ind in np.where(x==1)[0]]
+            items_to_labels[s][i] = [data.labels[ind] for ind in np.where(x == 1)[0]]
 
     labels_to_items = dict()
     for s in ['independent', 'joint']:

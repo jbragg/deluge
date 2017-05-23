@@ -3,23 +3,24 @@
 from __future__ import division
 import csv
 import collections
-import numpy as np
 import itertools
+import numpy as np
+
 
 def load_data(fname):
     """Reads a csv file and loads votes and labels into convenient format.
-    
+
     Input is csv file with the following fields:
-    - item: item name (str)
-    - label: label name (str)
-    - selected: vote (int)
+    - item (str): item name
+    - label (str): label name
+    - selected (int): vote
 
-    Outputs:
-    - items: item names (list: str)
-    - labels: label names (list: str)
-    - votes: (item name, label name) -> votes (list: bool)
+    Returns:
+    - items ([str]): item names
+    - labels ([str]): label names
+    - votes (dict): (item name, label name) -> votes (list: bool)
+
     """
-
     with open(fname, 'r') as f:
         reader = csv.DictReader(f)
         items = set()
@@ -32,24 +33,27 @@ def load_data(fname):
 
         return list(items), list(labels), votes
 
+
 class Data:
+
     def __init__(self, fin):
         items, labels, votes = load_data(fin)
         self.items = items
         self.labels = labels
         self.votes = votes
-            
+
     def make_posneg(self):
         """Convert votes to matrix format.
-        
-        Output: item name -> matrix (2 x |labels|) with the number of
+
+        Returns: item name -> matrix (2 x |labels|) with the number of
         positive votes (first row) and negative votes (second row)
+
         """
         posneg = dict()
         for i in self.items:
-            pos = np.array([sum(self.votes[i,l]) for
+            pos = np.array([sum(self.votes[i, l]) for
                             l in self.labels])
-            neg = np.array([len(self.votes[i,l]) for
+            neg = np.array([len(self.votes[i, l]) for
                             l in self.labels]) - pos
             posneg[i] = np.vstack((pos, neg))
 

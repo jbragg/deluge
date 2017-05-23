@@ -1,0 +1,4 @@
+dependencies:
+  - python=2.7
+  - numpy=1.12.*
+  - scipy=0.19.*
